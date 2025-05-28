@@ -8,10 +8,11 @@ type GridProps = {
 };
 
 const Grid = ({ size }: GridProps) => {
+  const emptyGrid = (size: number): CellState[][] =>
+    Array.from({ length: size }, () => Array(size).fill(CellState.DEAD));
+
   const [running, setRunning] = useState(false);
-  const [grid, setGrid] = useState<CellState[][]>(
-    Array.from({ length: size }, () => Array(size).fill(CellState.DEAD))
-  );
+  const [grid, setGrid] = useState<CellState[][]>(() => emptyGrid(size));
 
   useEffect(() => {
     if (!running) return;
@@ -24,7 +25,7 @@ const Grid = ({ size }: GridProps) => {
   }, [running]);
 
   const resetGrid = () => {
-    setGrid(Array.from({ length: size }, () => Array(size).fill(false)));
+    setGrid(emptyGrid(size));
   };
 
   const toggleRunGame = () => {

@@ -67,7 +67,6 @@ describe("computeNextGeneration", () => {
       ];
 
       const result: Seed = computeNextGeneration(seed);
-      console.log(result);
       expect(result).toEqual(nextGeneration);
     });
   });

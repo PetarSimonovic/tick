@@ -4,8 +4,12 @@ const tsJestTransformCfg = createDefaultPreset().transform;
 
 /** @type {import("jest").Config} **/
 module.exports = {
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
   transform: {
     ...tsJestTransformCfg,
+  },
+  moduleNameMapper: {
+    // For CSS/SCSS modules
+    "\\.(css|scss)$": "identity-obj-proxy",
   },
 };
