@@ -55,9 +55,11 @@ const App = ({ size = 20 }) => {
       ) : (
         <Grid grid={grid} updateCell={updateCell} />
       )}
-      <button onClick={resetGrid}>clear</button>
-      <button onClick={toggleRunGame}>{running ? "stop" : "run"}</button>
-      <SpeedSlider speed={speed} updateSpeed={setSpeed} />
+      <div className="control-panel">
+        <button onClick={resetGrid}>clear</button>
+        <button onClick={toggleRunGame}>{running ? "stop" : "run"}</button>
+        <SpeedSlider speed={speed} updateSpeed={setSpeed} />
+      </div>
     </>
   );
 };
