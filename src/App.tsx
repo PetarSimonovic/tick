@@ -1,4 +1,5 @@
 import Grid from "./components/Grid/Grid.tsx";
+import PetriDish from "./components/PetriDish/PetriDish.tsx";
 import { useEffect, useState } from "react";
 import { CellState } from "./logic/gameOfLife/gameOfLife.types.ts";
 import SpeedSlider from "./components/SpeedSlider/SpeedSlider.tsx";
@@ -49,7 +50,11 @@ const App = ({ size = 20 }) => {
 
   return (
     <>
-      <Grid grid={grid} updateCell={updateCell} />;
+      {running ? (
+        <PetriDish grid={grid} />
+      ) : (
+        <Grid grid={grid} updateCell={updateCell} />
+      )}
       <button onClick={resetGrid}>clear</button>
       <button onClick={toggleRunGame}>{running ? "stop" : "run"}</button>
       <SpeedSlider speed={speed} updateSpeed={setSpeed} />
