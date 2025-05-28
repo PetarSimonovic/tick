@@ -17,6 +17,7 @@ describe("Grid component", () => {
     fireEvent.click(cells[0]);
     // The cell should now have the 'cell__alive' class
     expect(cells[0].className).toMatch(/cell__alive/);
+
     // Click again to toggle back
     fireEvent.click(cells[0]);
     expect(cells[0].className).toMatch(/cell__dead/);

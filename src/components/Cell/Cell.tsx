@@ -7,7 +7,7 @@ type CellProps = {
   onClick: () => void;
 };
 
-const Cell: React.FC<CellProps> = ({ cellState, onClick }) => (
+const Cell = ({ cellState, onClick }: CellProps) => (
   <td
     className={
       cellState === CellState.ALIVE ? "cell cell__alive" : "cell cell__dead"
