@@ -1,20 +1,57 @@
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import Grid from "./components/Grid/Grid.tsx";
+import { useEffect, useState } from "react";
+import { CellState } from "./logic/gameOfLife/gameOfLife.types.ts";
+import { computeNextGeneration } from "./logic/gameOfLife/computeNextGeneration";
 
-function App() {
+const App = ({ size = 20 }) => {
+  const emptyGrid = (size: number): CellState[][] =>
+    Array.from({ length: size }, () => Array(size).fill(CellState.DEAD));
+
+  const [grid, setGrid] = useState<CellState[][]>(() => emptyGrid(size));
+  const [running, setRunning] = useState(false);
+
+  useEffect(() => {
+    if (!running) return;
+
+    const interval = setInterval(() => {
+      setGrid((prevGrid) => computeNextGeneration(prevGrid));
+    }, 200); //
+
+    return () => clearInterval(interval); // Cleanup on stop/unmount
+  }, [running]);
+
+  const resetGrid = () => {
+    setGrid(emptyGrid(size));
+  };
+
+  const toggleRunGame = () => {
+    setRunning(!running);
+  };
+
+  const updateCell = (
+    rowIndex: number,
+    colIndex: number,
+    cellState: CellState
+  ) => {
+    const newState =
+      cellState === CellState.ALIVE ? CellState.DEAD : CellState.ALIVE;
+
+    setGrid((prevGrid) => {
+      const newGrid = prevGrid.slice();
+      const newRow = [...newGrid[rowIndex]];
+      newRow[colIndex] = newState;
+      newGrid[rowIndex] = newRow;
+      return newGrid;
+    });
+  };
+
   return (
-    <div className="canvas-container">
-      <Canvas>
-        <ambientLight intensity={0.3} />
-        <directionalLight color="red" position={[0, 0, 2]} />
-        <mesh position={[0, 1, 0]}>
-          <boxGeometry args={[2, 2, 2]} />
-          <meshStandardMaterial />
-        </mesh>
-        <OrbitControls />
-      </Canvas>
-    </div>
+    <>
+      <Grid grid={grid} updateCell={updateCell} />;
+      <button onClick={resetGrid}>clear</button>
+      <button onClick={toggleRunGame}>{running ? "stop" : "run"}</button>
+    </>
   );
-}
+};
 
 export default App;
