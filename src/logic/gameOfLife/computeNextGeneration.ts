@@ -14,6 +14,8 @@ const NEIGHBOUR_OFFSETS: number[][] = [
 ];
 
 export const computeNextGeneration = (seed: Seed): Seed => {
+  console.log("Computing");
+  console.log(seed);
   const processedGeneration: Seed = processGeneration(seed);
 
   return nextGeneration(processedGeneration);

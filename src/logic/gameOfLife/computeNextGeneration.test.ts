@@ -1,4 +1,4 @@
-import { computeNextGeneration } from "./gameOfLife";
+import { computeNextGeneration } from "./computeNextGeneration";
 import type { Seed } from "./gameOfLife.types";
 
 describe("computeNextGeneration", () => {
