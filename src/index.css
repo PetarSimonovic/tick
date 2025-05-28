@@ -1,17 +1,24 @@
 html,
 body,
-#root,
-.canvas-container {
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .canvas-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70vh; /* Full viewport height */
-  width: 70vw; /* Full viewport width */
+  height: 70vh;
+  width: 70vw;
+  margin: 0;
+  padding: 0;
 }
