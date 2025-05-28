@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import Grid from "./Grid";
-import { CellState } from "../../logic/gameOfLife/gameOfLife.types";
 
 describe("Grid component", () => {
   it("renders a grid of the correct size", () => {
