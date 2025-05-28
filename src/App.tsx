@@ -1,6 +1,7 @@
 import Grid from "./components/Grid/Grid.tsx";
 import { useEffect, useState } from "react";
 import { CellState } from "./logic/gameOfLife/gameOfLife.types.ts";
+import SpeedSlider from "./components/SpeedSlider/SpeedSlider.tsx";
 import { computeNextGeneration } from "./logic/gameOfLife/computeNextGeneration";
 
 const App = ({ size = 20 }) => {
@@ -8,6 +9,7 @@ const App = ({ size = 20 }) => {
     Array.from({ length: size }, () => Array(size).fill(CellState.DEAD));
 
   const [grid, setGrid] = useState<CellState[][]>(() => emptyGrid(size));
+  const [speed, setSpeed] = useState(100);
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
@@ -15,10 +17,10 @@ const App = ({ size = 20 }) => {
 
     const interval = setInterval(() => {
       setGrid((prevGrid) => computeNextGeneration(prevGrid));
-    }, 200); //
+    }, speed); //
 
     return () => clearInterval(interval); // Cleanup on stop/unmount
-  }, [running]);
+  }, [running, speed]);
 
   const resetGrid = () => {
     setGrid(emptyGrid(size));
@@ -50,6 +52,7 @@ const App = ({ size = 20 }) => {
       <Grid grid={grid} updateCell={updateCell} />;
       <button onClick={resetGrid}>clear</button>
       <button onClick={toggleRunGame}>{running ? "stop" : "run"}</button>
+      <SpeedSlider speed={speed} updateSpeed={setSpeed} />
     </>
   );
 };
