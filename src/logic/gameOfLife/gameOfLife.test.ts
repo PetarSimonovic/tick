@@ -71,4 +71,58 @@ describe("computeNextGeneration", () => {
       expect(result).toEqual(nextGeneration);
     });
   });
+  describe(" Blinker oscillator", () => {
+    it("returns correct state after three ticks", () => {
+      let seed: Seed = [
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 1, 0],
+      ];
+
+      // Tick 1
+      seed = computeNextGeneration(seed);
+      // Tick 2
+      seed = computeNextGeneration(seed);
+      // Tick 3
+      seed = computeNextGeneration(seed);
+
+      const expected: Seed = [
+        [0, 0, 0],
+        [1, 1, 1],
+        [0, 0, 0],
+      ];
+
+      expect(seed).toEqual(expected);
+    });
+  });
+  describe("Glider", () => {
+    it("returns correct state after four ticks on a 5x5 grid", () => {
+      let seed: Seed = [
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+
+      // Tick 1
+      seed = computeNextGeneration(seed);
+      // Tick 2
+      seed = computeNextGeneration(seed);
+      // Tick 3
+      seed = computeNextGeneration(seed);
+      // Tick 4
+      seed = computeNextGeneration(seed);
+
+      const expected: Seed = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0],
+        [0, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0],
+      ];
+
+      expect(seed).toEqual(expected);
+    });
+  });
 });

@@ -1,5 +1,7 @@
 import { CellState, type Seed } from "./gameOfLife.types";
 
+// Not optimised for large grids
+
 const NEIGHBOUR_OFFSETS: number[][] = [
   [-1, -1], // top left
   [-1, 0], // top
@@ -18,13 +20,11 @@ export const computeNextGeneration = (seed: Seed): Seed => {
 };
 
 const processGeneration = (seed: Seed): Seed => {
-  return seed.map((row: CellState[], rowIndex: number) => {
-    return row.map((cell: CellState, colIndex: number) => {
-      const liveNeighbours: number = checkNeighbours(rowIndex, colIndex, seed);
-      cell = checkSurvivalConditions(cell, liveNeighbours);
-      return cell;
-    });
-  });
+  return seed.map((row: CellState[], rowIndex: number) =>
+    row.map((cell: CellState, colIndex: number) =>
+      checkSurvivalConditions(cell, checkNeighbours(rowIndex, colIndex, seed))
+    )
+  );
 };
 
 const checkNeighbours = (
