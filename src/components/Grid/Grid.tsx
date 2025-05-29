@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { CellState } from "../../logic/gameOfLife/gameOfLife.types";
 import Cell from "../Cell/Cell";
 

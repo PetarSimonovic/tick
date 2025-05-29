@@ -1,8 +1,8 @@
-import Grid from "./components/Grid/Grid.tsx";
-import PetriDish from "./components/PetriDish/PetriDish.tsx";
+import Grid from "./components/Grid/Grid";
+import PetriDish from "./components/PetriDish/PetriDish";
 import { useEffect, useState } from "react";
-import { CellState } from "./logic/gameOfLife/gameOfLife.types.ts";
-import SpeedSlider from "./components/SpeedSlider/SpeedSlider.tsx";
+import { CellState } from "./logic/gameOfLife/gameOfLife.types";
+import SpeedSlider from "./components/SpeedSlider/SpeedSlider";
 import { computeNextGeneration } from "./logic/gameOfLife/computeNextGeneration";
 
 const App = ({ size = 20 }) => {

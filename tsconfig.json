@@ -1,4 +1,5 @@
 {
+  "composite": true,
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
@@ -8,7 +9,8 @@
     // ...other options...
     "jsx": "react-jsx",
     "types": ["jest", "node"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noEmit": false
   },
   "include": ["src"]
 }
