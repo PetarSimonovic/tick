@@ -2,17 +2,21 @@
   "name": "tick",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://petarsimonovic.github.io/tick/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.8",
     "@react-three/fiber": "^9.1.2",
+    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "three": "^0.176.0"

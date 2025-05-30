@@ -2,14 +2,7 @@
 
 tick is a 3D implementation of Conway's [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
-## Set up
-
-```
-yarn install
-yarn dev
-```
-
-It should be available on `http://localhost:5174/`
+[https://petarsimonovic.github.io/tick/](https://petarsimonovic.github.io/tick/)
 
 ## How to play
 
