@@ -10,8 +10,8 @@ const SpeedSlider = ({ speed, updateSpeed }: SpeedSliderProps) => {
       <input
         type="range"
         min={100}
-        max={2000}
-        step={100}
+        max={1000}
+        step={10}
         value={speed}
         onChange={(e) => updateSpeed(Number(e.target.value))}
       />
