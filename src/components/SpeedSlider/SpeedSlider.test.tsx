@@ -1,23 +1,27 @@
 import { render, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import "@testing-library/jest-dom";
 import SpeedSlider from "./SpeedSlider";
 
-const handleClick = jest.fn();
-
 describe("SpeedSlider", () => {
+  const handleSpeedUpdate = jest.fn();
+
+  beforeEach(() => {
+    handleSpeedUpdate.mockClear();
+  });
   it("renders correctly", () => {
     const { getByRole } = render(
-      <SpeedSlider value={50} onChange={() => {}} />
+      <SpeedSlider speed={50} updateSpeed={() => {}} />
     );
     expect(getByRole("slider")).toBeInTheDocument();
   });
 
-  it("calls onChange when the slider value changes", () => {
-    const handleChange = jest.fn();
+  it("calls onChange when the slider value changes", async () => {
     const { getByRole } = render(
-      <SpeedSlider value={50} onChange={handleChange} />
+      <SpeedSlider speed={50} updateSpeed={handleSpeedUpdate} />
     );
     const slider = getByRole("slider");
     fireEvent.change(slider, { target: { value: "75" } });
-    expect(handleChange).toHaveBeenCalled();
+    expect(handleSpeedUpdate).toHaveBeenCalled();
   });
 });
